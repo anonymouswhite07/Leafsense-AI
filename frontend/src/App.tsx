@@ -138,7 +138,7 @@ const AVAILABLE_LABELS = [
   "Tomato___Bacterial_spot", "Tomato___healthy"
 ];
 
-const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? "http://127.0.0.1:8000" : "/_/backend";
+const API_BASE = import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? "http://127.0.0.1:8000" : "/api");
 
 function App() {
   const [files, setFiles] = useState<File[]>([]);
