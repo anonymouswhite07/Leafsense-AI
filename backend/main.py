@@ -9,6 +9,7 @@ import numpy as np
 import cv2
 import base64
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import io
@@ -23,15 +24,44 @@ import google.generativeai as genai
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("main")
 
+import gc
+from starlette.middleware.base import BaseMiddleware
+
 app = FastAPI(title="LeafSense AI API")
+
+# Global Error + CORS Handler (Ensures CORS headers even on crashes)
+class CORSRecoveryMiddleware(BaseMiddleware):
+    async def dispatch(self, request, call_next):
+        try:
+            response = await call_next(request)
+            response.headers["Access-Control-Allow-Origin"] = "*"
+            response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+            response.headers["Access-Control-Allow-Headers"] = "*"
+            return response
+        except Exception as e:
+            logger.error(f"CRITICAL SYSTEM ERROR: {e}")
+            return JSONResponse(
+                status_code=500,
+                content={"error": "Internal server error. RAM limit likely exceeded on Free Tier."},
+                headers={
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*",
+                    "Access-Control-Allow-Headers": "*"
+                }
+            )
+
+app.add_middleware(CORSRecoveryMiddleware)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*", "https://leafsense-ai-tgf9.vercel.app"],
+    allow_origins=["*"],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# TTA Configuration (Reduced for RAM stability)
+TTA_ITERATIONS = 5 
 
 # Constants & Configurations
 MODEL_DIR = "model" if os.path.exists("model") else "../model"
@@ -166,121 +196,107 @@ async def predict(
         timestamp = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         image_results = []
         
+        # Hyperparameters (Calibrated for RAM / Performance balance)
+        CONF_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", 30.0))
+        MARGIN_THRESHOLD = float(os.getenv("MARGIN_THRESHOLD", 5.0))
+        ENTROPY_THRESHOLD = float(os.getenv("ENTROPY_THRESHOLD", 2.0))
+        CONSISTENCY_THRESHOLD = float(os.getenv("CONSISTENCY_THRESHOLD", 0.25))
+        N_TTA = 5
+        TEMPERATURE = 1.1
+
         for file in files:
+            # Load and Pre-process image
             contents = await file.read()
             image = Image.open(io.BytesIO(contents)).convert("RGB")
-            original_cv = cv2.cvtColor(np.array(image.resize((224, 224))), cv2.COLOR_RGB2BGR)
             
+            # Create Anchor Tensor
             anchor_tensor = transform(image).unsqueeze(0).to(device)
             anchor_tensor.requires_grad_()
             
-            # Phase 17: TTA
-            N_TTA = 5
+            # Predict with TTA
             tta_tensors = [tta_transform(image).to(device) for _ in range(N_TTA)]
             batch_tensor = torch.cat([anchor_tensor, torch.stack(tta_tensors)], dim=0)
             
             with torch.enable_grad():
-                outputs = model(batch_tensor)
-                TEMPERATURE = 1.1
-                scaled_logits = outputs / TEMPERATURE
-                probabilities = torch.nn.functional.softmax(scaled_logits, dim=1)
+                outputs = model(batch_tensor) / TEMPERATURE
+                probabilities = torch.nn.functional.softmax(outputs, dim=1)
                 
                 mean_probs = torch.mean(probabilities, dim=0)
                 confidence, predicted_idx = torch.max(mean_probs, 0)
                 
                 predicted_classes = torch.argmax(probabilities, dim=1)
-                consistency_count = (predicted_classes == predicted_idx.item()).sum().item()
-                consistency_score = consistency_count / (N_TTA + 1)
+                consistency_score = (predicted_classes == predicted_idx.item()).sum().item() / (N_TTA + 1)
                 
                 top3_prob, top3_idx = torch.topk(mean_probs, min(3, len(class_labels)))
                 cam = grad_cam.generate(anchor_tensor, predicted_idx.item())
-            
-            top3_predictions = [{"disease": class_labels[idx.item()], "confidence": round(prob.item() * 100, 2)} for prob, idx in zip(top3_prob, top3_idx)]
-            
-            # Uncertainty Adjudication
-            CONF_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", 30.0))
-            MARGIN_THRESHOLD = float(os.getenv("MARGIN_THRESHOLD", 5.0))
-            ENTROPY_THRESHOLD = float(os.getenv("ENTROPY_THRESHOLD", 2.0))
-            CONSISTENCY_THRESHOLD = float(os.getenv("CONSISTENCY_THRESHOLD", 0.25))
-            
-            confidence_val = top3_prob[0].item() * 100
+
+            confidence_val = confidence.item() * 100
             top2_val = top3_prob[1].item() * 100 if len(top3_prob) > 1 else 0.0
             margin = confidence_val - top2_val
-            
             epsilon = 1e-7
             entropy = -torch.sum(mean_probs * torch.log(mean_probs + epsilon)).item()
             
-            print(f"--- DEBUG: Class={class_labels[predicted_idx.item()]} Conf={confidence_val:.2f} Entropy={entropy:.4f} Margin={margin:.2f} Consistency={consistency_score:.2f} ---")
-            
+            # Adjudication logic
             is_uncertain = False
             rejection_reason = ""
             if confidence_val < CONF_THRESHOLD:
                 is_uncertain = True
-                rejection_reason = "Low confidence prediction"
+                rejection_reason = "Low confidence"
             elif entropy > ENTROPY_THRESHOLD:
                 is_uncertain = True
-                rejection_reason = "Highly confusing visual structure (Extreme Entropy)"
-            elif margin < MARGIN_THRESHOLD and entropy > 1.4:
+                rejection_reason = "High visual entropy"
+            elif margin < MARGIN_THRESHOLD:
                 is_uncertain = True
-                rejection_reason = f"Ambiguous between {class_labels[top3_idx[0].item()].replace('___', ' ')} and {class_labels[top3_idx[1].item()].replace('___', ' ')} with high visual entropy"
+                rejection_reason = "Class ambiguity"
             elif consistency_score < CONSISTENCY_THRESHOLD:
                 is_uncertain = True
-                rejection_reason = "Unstable predictions across visual perspectives (Low TTA Consistency)"
+                rejection_reason = "TTA inconsistency"
 
-            if is_uncertain:
-                disease_name = "Unknown"
-                solution_text = f"{rejection_reason}. Please retake."
-            else:
-                disease_name = class_labels[predicted_idx.item()]
-                solution_text = solutions.get(disease_name, "No specific solution available.")
+            disease_name = "Unknown" if is_uncertain else class_labels[predicted_idx.item()]
+            solution_text = f"{rejection_reason}. Please retake." if is_uncertain else solutions.get(disease_name, "No solution found.")
             
-            # Base64 Overlay
+            # Heatmap Base64
+            original_cv = cv2.cvtColor(np.array(image.resize((224, 224))), cv2.COLOR_RGB2BGR)
             heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
-            heatmap = np.float32(heatmap) / 255
-            original_float = np.float32(original_cv) / 255
-            overlay = heatmap * 0.4 + original_float * 0.6
-            overlay = np.uint8(255 * overlay)
+            overlay = np.uint8(heatmap * 0.4 + original_cv * 0.6)
             _, buffer = cv2.imencode('.jpg', overlay)
             cam_base64 = base64.b64encode(buffer).decode('utf-8')
-            
+
             image_results.append({
                 "disease": disease_name,
                 "confidence": round(confidence_val, 2),
                 "solution": solution_text,
                 "cam_base64": f"data:image/jpeg;base64,{cam_base64}",
                 "is_uncertain": is_uncertain,
-                "top3_predictions": top3_predictions,
-                "consistency_score": round(consistency_score * 100, 2),
-                "final_decision": "unstable" if is_uncertain else "stable"
+                "consistency_score": round(consistency_score * 100, 2)
             })
             
-        # Cross-Image Consensus logic
+            # Cleanup to save RAM
+            del image, anchor_tensor, tta_tensors, batch_tensor, outputs, probabilities
+            gc.collect()
+
+        # Consensus Check
         valid_predictions = [res["disease"] for res in image_results if res["disease"] != "Unknown"]
-        
-        if len(valid_predictions) == 0:
-            final_disease = "Unknown"
-            status = "conflict"
-            cross_consistency = 0.0
-            avg_conf = 0.0
-            final_solution = "Conflicting results or completely unknown structures detected. Please retake clearer photos."
-        else:
-            final_disease = max(set(valid_predictions), key=valid_predictions.count)
-            cross_consistency = valid_predictions.count(final_disease) / len(image_results)
-            avg_conf = sum([r["confidence"] for r in image_results if r["disease"] == final_disease]) / valid_predictions.count(final_disease)
-            
-            if cross_consistency >= 0.5 and avg_conf >= float(os.getenv("CONFIDENCE_THRESHOLD", 30.0)):
-                status = "stable"
-                final_solution = solutions.get(final_disease, "No specific solution available.")
-                # Save stable events
-                conn = get_db()
-                conn.execute("INSERT INTO events (disease, confidence, timestamp, lat, lng, region) VALUES (?, ?, ?, ?, ?, ?)",
-                            (final_disease, avg_conf, timestamp, lat, lng, region))
-                conn.commit()
-                conn.close()
-            else:
-                final_disease = "Unknown"
-                status = "conflict"
-                final_solution = "Conflicting results across multiple images. Please retake clearer photos."
+        status = "stable" if len(valid_predictions) > 0 else "conflict"
+        final_disease = max(set(valid_predictions), key=valid_predictions.count) if valid_predictions else "Unknown"
+        final_solution = solutions.get(final_disease, "No specific solution available.") if status == "stable" else "Inconclusive result."
+        avg_conf = sum([r["confidence"] for r in image_results if r["disease"] == final_disease]) / valid_predictions.count(final_disease) if valid_predictions else 0.0
+
+        if status == "stable":
+            conn = get_db()
+            conn.execute("INSERT INTO events (disease, confidence, timestamp, lat, lng, region) VALUES (?, ?, ?, ?, ?, ?)",
+                        (final_disease, avg_conf, timestamp, lat, lng, region))
+            conn.commit()
+            conn.close()
+
+        return {
+            "final_prediction": final_disease,
+            "confidence": round(avg_conf, 2),
+            "solution": final_solution,
+            "status": status,
+            "image_results": image_results,
+            "alerts": analyze_outbreaks(region)
+        }
         
         local_alerts = analyze_outbreaks(region)
         
