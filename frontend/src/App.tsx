@@ -150,7 +150,6 @@ function App() {
   const [lang, setLang] = useState<'en' | 'ta'>('en');
   const [showHistory, setShowHistory] = useState(false);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [modelInfo, setModelInfo] = useState<ModelInfo | null>(null);
   
@@ -230,7 +229,7 @@ function App() {
   };
 
   const startCamera = async () => {
-    setCameraError(null); setIsCameraOpen(true); setPrediction(null); setError(null); setChatMessages([]);
+    setIsCameraOpen(true); setPrediction(null); setError(null); setChatMessages([]);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
       if (videoRef.current) videoRef.current.srcObject = stream;
