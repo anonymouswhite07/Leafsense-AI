@@ -33,8 +33,9 @@ app.add_middleware(
 )
 
 # Constants & Configurations
-MODEL_PATH = "../model/leaf_disease_model.pt"
-LABELS_PATH = "../model/class_labels.json"
+MODEL_DIR = "model" if os.path.exists("model") else "../model"
+MODEL_PATH = os.path.join(MODEL_DIR, "leaf_disease_model.pt")
+LABELS_PATH = os.path.join(MODEL_DIR, "class_labels.json")
 SOLUTIONS_PATH = "solutions.json"
 DATABASE_PATH = "intelligence.db"
 

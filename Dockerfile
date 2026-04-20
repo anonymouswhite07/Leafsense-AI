@@ -19,6 +19,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy backend folder contents to workdir
 COPY backend/ .
 
+# Copy model folder
+COPY model/ ./model/
+
 # Ensure model and solutions are available
 # (The root COPY above will have copied everything inside 'backend' to '/app')
 
