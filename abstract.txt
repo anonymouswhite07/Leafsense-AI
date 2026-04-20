@@ -1,0 +1,14 @@
+PROJECT ABSTRACT: LeafSense AI - Multi-Crop Agricultural Intelligence Platform
+
+LeafSense AI is an advanced, computer-vision powered diagnostic engine designed to provide real-time identification and remediation strategies for agricultural crop diseases. The system integrates deep learning, uncertainy adjudication logic, and expert AI consultation to support sustainable farming practices.
+
+Key Technical Components:
+1. Neural Architecture: Utilizes a MobileNetV2-based deep convolutional neural network optimized for low-latency inference on agricultural mobile hardware.
+2. Multi-Crop Intelligence: Supports 8 distinct categories across high-value crops including Apple (Apple Scab), Banana (Black Sigatoka), Corn (Common Rust), and Tomato (Bacterial Spot).
+3. Production Security Gate: Implements a multi-layered uncertainty adjudication matrix (Confidence ≥ 30%, Entropy ≤ 2.0, and TTA Consistency ≥ 0.25) to prevent false-positive diagnostics and ensure stability in varied lighting conditions.
+4. Intelligent Consensus Engine: Processes multi-frame image batches to achieve statistical consensus, significantly reducing noise from individual low-quality frames.
+5. Expert Recommendation Layer: Maps diagnostics to specific cultural and chemical control measures (fungicides, irrigation adjustments, and thinning) stored in an expert knowledge base.
+6. Regional Intelligence & Telemetry: Features an integrated SQLite-based event tracker with automated outbreak detection logic, alerting users when high-confidence clusters of specific diseases are identified in a geographic region.
+7. Agronomist AI Interface: Integrated with Google Gemini Pro to provide continuous, context-aware agronomist consultations based on neural diagnostic telemetry.
+
+By combining precision state-of-the-art AI with actionable field knowledge, LeafSense AI bridges the gap between digital pathology and immediate agricultural intervention, empowering farmers to protect crop yields before outbreaks reach critical thresholds.

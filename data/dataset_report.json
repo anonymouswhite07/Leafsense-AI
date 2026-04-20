@@ -1,0 +1,43 @@
+{
+    "total_processed": 684,
+    "classes": {
+        "Apple___Scab": 0,
+        "Banana___Black_Sigatoka": 557,
+        "Corn___Rust": 0,
+        "Healthy___Crop_Leaf": 0,
+        "Tomato___Blight": 0,
+        "Tomato___Leaf_Blight": 127
+    },
+    "removed_stats": {
+        "apple_scab": {
+            "duplicates": 0,
+            "corrupted": 0,
+            "small": 0
+        },
+        "banana_black_sigatoka": {
+            "duplicates": 634,
+            "corrupted": 0,
+            "small": 6
+        },
+        "corn_rust": {
+            "duplicates": 0,
+            "corrupted": 0,
+            "small": 0
+        },
+        "healthy_crop_leaf": {
+            "duplicates": 0,
+            "corrupted": 0,
+            "small": 0
+        },
+        "tomato_blight": {
+            "duplicates": 0,
+            "corrupted": 0,
+            "small": 0
+        },
+        "tomato_leaf_blight": {
+            "duplicates": 4,
+            "corrupted": 0,
+            "small": 9
+        }
+    }
+}

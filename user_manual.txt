@@ -1,0 +1,103 @@
+USER MANUAL: LeafSense AI Diagnostic & Intelligence Platform
+
+VERSION: 2.1.0-Production
+DATE: April 19, 2026
+
+--------------------------------------------------------------------------------
+1. INTRODUCTION
+--------------------------------------------------------------------------------
+LeafSense AI is an end-to-end agricultural diagnostic platform. It uses Deep Learning (MobileNetV2) to identify diseases in Apple, Banana, Corn, and Tomato crops from leaf imagery. The platform includes a real-time React dashboard, an automated data collection pipeline, and a Gemini-powered AI Agronomist consultation system.
+
+--------------------------------------------------------------------------------
+2. SYSTEM REQUIREMENTS
+--------------------------------------------------------------------------------
+- OS: Windows 10/11, macOS, or Linux.
+- Python: 3.10 or higher.
+- Node.js: 18.x or higher (for frontend).
+- Hardware: Minimum 8GB RAM. GPU (NVIDIA) recommended for training but not required for inference.
+- Internet Connection: Required for initial setup and AI Agronomist chat.
+
+--------------------------------------------------------------------------------
+3. INSTALLATION & SETUP
+--------------------------------------------------------------------------------
+BACKEND SETUP:
+1. Navigate to the `backend` directory.
+2. Create a virtual environment: `python -m venv venv`.
+3. Activate venv: `.\venv\Scripts\activate` (Windows) or `source venv/bin/activate` (Linux).
+4. Install dependencies: `pip install -r requirements.txt`.
+5. Configuration: Open `backend/.env` and paste your Google Gemini API Key:
+   `GEMINI_API_KEY=your_key_here`
+
+FRONTEND SETUP:
+1. Navigate to the `frontend` directory.
+2. Install dependencies: `npm install`.
+3. Start development server: `npm run dev`.
+
+--------------------------------------------------------------------------------
+4. THE DATA PIPELINE & TRAINING
+--------------------------------------------------------------------------------
+COLLECTING DATA:
+- Use `data_pipeline/scraper.py` to collect new crop images.
+- Command: `python scraper.py --query "apple leaf scab" --limit 100`.
+
+REBUILDING DATASET:
+- Run `python build_dataset.py` to organize raw imagery into the 8-class training structure.
+
+TRAINING THE MODEL:
+- Run `python model/train.py` to retrain the neural network on local data.
+- The script uses weighted loss to handle class imbalance and saves the model to `leaf_disease_model.pt`.
+
+--------------------------------------------------------------------------------
+5. OPERATING THE SCANNER (STARTING THE SYSTEM)
+--------------------------------------------------------------------------------
+To run the full platform, you must have two terminal windows open simultaneously.
+
+STEP 1: START THE BACKEND (API SERVER)
+- Open a terminal in the project root.
+- Run: `cd backend`
+- Run: `.\venv\Scripts\activate` (On Windows) or `source venv/bin/activate` (Mac/Linux)
+- Run: `python main.py`
+- *The server is ready when you see: "Uvicorn running on http://0.0.0.0:8000"*
+
+STEP 2: START THE FRONTEND (USER INTERFACE)
+- Open a second terminal in the project root.
+- Run: `cd frontend`
+- Run: `npm run dev`
+- *The app will be available at: http://localhost:5173*
+
+DIAGNOSIS FLOW:
+- Open your browser to the frontend URL above.
+- Click "Scan with Camera" or drag-and-drop a leaf image.
+- For high accuracy, capture multiple images of the same leaf.
+- The system will run a multi-image consensus check.
+- Result: A "Stable" diagnosis returns the disease name, confidence score, heatmap, and suggested remedy.
+
+--------------------------------------------------------------------------------
+6. INTELLIGENCE DASHBOARD
+--------------------------------------------------------------------------------
+- Access via the "Dashboard" button in the navigation bar.
+- Distribution: See which diseases are most prevalent in your scans.
+- Trends: Historical scan activity over the last 7 days.
+- Outbreaks: Live alerts triggered by clusters of disease identification.
+- Export: Download anonymized JSON data for research purposes.
+
+--------------------------------------------------------------------------------
+7. AI AGRONOMIST CHAT
+--------------------------------------------------------------------------------
+- After a successful diagnosis, a chat window appears in the bottom right.
+- You can ask natural language questions (English or Tamil) about crop care.
+- The AI uses the specific diagnostic telemetry as context to provide precision advice.
+
+--------------------------------------------------------------------------------
+8. SAFETY & LIMITATIONS
+--------------------------------------------------------------------------------
+- ADJUDICATION: The system will reject images with Confidence < 30% or High Entropy (> 2.0).
+- ENVIRONMENT: For best results, use neutral backgrounds and bright, even lighting.
+- ADVICE: Neural diagnostics are support tools; always consult with a local agricultural extension officer for critical chemical applications.
+
+--------------------------------------------------------------------------------
+MAINTENANCE & LOGS
+--------------------------------------------------------------------------------
+- Inference logs are saved to `backend/main.py` console output.
+- Diagnostic history is stored in `backend/intelligence.db` (SQLite).
+- Feedback and corrections are stored in `backend/feedback.db`.

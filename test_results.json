@@ -1,0 +1,802 @@
+[
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000006.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 24.97,
+        "margin": 5.92,
+        "entropy": 1.9589,
+        "consistency": 0.67,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000010.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 20.58,
+        "margin": 2.6,
+        "entropy": 2.0119,
+        "consistency": 0.83,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000030.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 21.92,
+        "margin": 3.92,
+        "entropy": 2.0126,
+        "consistency": 0.83,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000004.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 19.69,
+        "margin": 0.81,
+        "entropy": 2.0254,
+        "consistency": 0.5,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000019.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 22.01,
+        "margin": 5.31,
+        "entropy": 2.0264,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000022.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 21.82,
+        "margin": 0.72,
+        "entropy": 1.9716,
+        "consistency": 0.5,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000046.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Tomato___healthy",
+        "confidence": 14.21,
+        "margin": 0.72,
+        "entropy": 2.0741,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000028.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 21.93,
+        "margin": 3.34,
+        "entropy": 1.9643,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000040.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 23.67,
+        "margin": 1.91,
+        "entropy": 1.9204,
+        "consistency": 0.33,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___Apple_scab\\scraped_000049.jpg",
+        "expected": "Apple___Apple_scab",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 20.94,
+        "margin": 3.04,
+        "entropy": 1.9951,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000008.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 16.02,
+        "margin": 0.93,
+        "entropy": 2.0579,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000005.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Banana___healthy",
+        "confidence": 16.08,
+        "margin": 0.52,
+        "entropy": 2.0574,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000007.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 15.05,
+        "margin": 0.56,
+        "entropy": 2.0689,
+        "consistency": 0.33,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000006.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.61,
+        "margin": 2.12,
+        "entropy": 2.0624,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000002.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.64,
+        "margin": 0.92,
+        "entropy": 2.0578,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000003.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.57,
+        "margin": 1.55,
+        "entropy": 2.0567,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000004.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 16.29,
+        "margin": 1.81,
+        "entropy": 2.0633,
+        "consistency": 0.33,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000000.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Corn___Common_rust",
+        "confidence": 14.59,
+        "margin": 0.02,
+        "entropy": 2.0671,
+        "consistency": 0.17,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000001.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.56,
+        "margin": 1.28,
+        "entropy": 2.0645,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Apple___healthy\\scraped_000009.jpg",
+        "expected": "Apple___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 16.71,
+        "margin": 2.59,
+        "entropy": 2.0646,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000455.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 30.34,
+        "margin": 10.66,
+        "entropy": 1.8436,
+        "consistency": 0.83,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_001034.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 33.72,
+        "margin": 14.29,
+        "entropy": 1.8245,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000116.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 26.01,
+        "margin": 7.53,
+        "entropy": 1.9502,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000684.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 26.25,
+        "margin": 6.88,
+        "entropy": 1.9435,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000976.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 31.91,
+        "margin": 12.82,
+        "entropy": 1.8549,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000531.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 27.62,
+        "margin": 11.59,
+        "entropy": 1.9495,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000276.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 27.71,
+        "margin": 9.94,
+        "entropy": 1.9262,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000536.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 23.3,
+        "margin": 4.88,
+        "entropy": 1.9776,
+        "consistency": 0.83,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000584.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 29.62,
+        "margin": 8.44,
+        "entropy": 1.8723,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___Black_Sigatoka\\scraped_000175.jpg",
+        "expected": "Banana___Black_Sigatoka",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 26.15,
+        "margin": 8.66,
+        "entropy": 1.9609,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000000.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 14.31,
+        "margin": 0.24,
+        "entropy": 2.0702,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000006.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 15.58,
+        "margin": 1.25,
+        "entropy": 2.0666,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000005.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Banana___healthy",
+        "confidence": 16.2,
+        "margin": 0.79,
+        "entropy": 2.0553,
+        "consistency": 0.5,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000009.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 17.26,
+        "margin": 2.66,
+        "entropy": 2.0616,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000003.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 17.03,
+        "margin": 1.5,
+        "entropy": 2.0539,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000008.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.0,
+        "margin": 0.83,
+        "entropy": 2.0609,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000007.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Banana___healthy",
+        "confidence": 15.25,
+        "margin": 0.31,
+        "entropy": 2.0684,
+        "consistency": 0.5,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000001.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.43,
+        "margin": 1.23,
+        "entropy": 2.0661,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000004.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 15.79,
+        "margin": 0.64,
+        "entropy": 2.0658,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Banana___healthy\\scraped_000002.jpg",
+        "expected": "Banana___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.53,
+        "margin": 1.18,
+        "entropy": 2.0602,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000008.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 31.91,
+        "margin": 14.46,
+        "entropy": 1.8562,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000009.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 19.58,
+        "margin": 1.5,
+        "entropy": 1.9666,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000007.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 24.06,
+        "margin": 5.76,
+        "entropy": 1.9424,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000006.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 22.98,
+        "margin": 5.3,
+        "entropy": 1.9681,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000002.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 18.56,
+        "margin": 0.06,
+        "entropy": 1.991,
+        "consistency": 0.33,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000003.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 27.39,
+        "margin": 11.14,
+        "entropy": 1.9445,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000000.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 20.87,
+        "margin": 2.29,
+        "entropy": 1.9855,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000005.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 23.44,
+        "margin": 4.11,
+        "entropy": 1.9649,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000004.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 29.95,
+        "margin": 9.86,
+        "entropy": 1.8581,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___Common_rust\\scraped_000001.jpg",
+        "expected": "Corn___Common_rust",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 20.25,
+        "margin": 3.49,
+        "entropy": 2.0094,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000009.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 17.32,
+        "margin": 3.28,
+        "entropy": 2.0639,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000007.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 15.64,
+        "margin": 1.26,
+        "entropy": 2.0687,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000004.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 15.84,
+        "margin": 0.93,
+        "entropy": 2.0659,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000003.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.5,
+        "margin": 1.24,
+        "entropy": 2.0601,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000005.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Banana___healthy",
+        "confidence": 16.22,
+        "margin": 0.89,
+        "entropy": 2.0558,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000001.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 15.46,
+        "margin": 0.81,
+        "entropy": 2.0692,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000008.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.01,
+        "margin": 0.33,
+        "entropy": 2.0583,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000006.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.5,
+        "margin": 2.21,
+        "entropy": 2.0627,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000002.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.45,
+        "margin": 1.17,
+        "entropy": 2.055,
+        "consistency": 0.83,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Corn___healthy\\scraped_000000.jpg",
+        "expected": "Corn___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 14.17,
+        "margin": 0.41,
+        "entropy": 2.0724,
+        "consistency": 0.17,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\scraped_000003.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 22.07,
+        "margin": 5.03,
+        "entropy": 1.9921,
+        "consistency": 0.83,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00075.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 31.2,
+        "margin": 10.5,
+        "entropy": 1.8328,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\scraped_000007.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 26.28,
+        "margin": 6.12,
+        "entropy": 1.8924,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00045.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 25.86,
+        "margin": 5.79,
+        "entropy": 1.9049,
+        "consistency": 0.83,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00133.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 28.49,
+        "margin": 9.28,
+        "entropy": 1.9093,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00107.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 25.31,
+        "margin": 2.41,
+        "entropy": 1.9009,
+        "consistency": 0.67,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00041.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 18.76,
+        "margin": 0.27,
+        "entropy": 2.0115,
+        "consistency": 0.5,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00070.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Tomato___Bacterial_spot",
+        "confidence": 23.93,
+        "margin": 4.26,
+        "entropy": 1.9412,
+        "consistency": 0.83,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00135.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 25.33,
+        "margin": 4.52,
+        "entropy": 1.926,
+        "consistency": 1.0,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___Bacterial_spot\\img_00005.jpg",
+        "expected": "Tomato___Bacterial_spot",
+        "predicted": "Banana___Black_Sigatoka",
+        "confidence": 24.32,
+        "margin": 0.4,
+        "entropy": 1.8808,
+        "consistency": 0.33,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000004.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 15.52,
+        "margin": 0.41,
+        "entropy": 2.0662,
+        "consistency": 0.67,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000001.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.07,
+        "margin": 1.0,
+        "entropy": 2.0678,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000008.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Banana___healthy",
+        "confidence": 15.55,
+        "margin": 0.04,
+        "entropy": 2.0631,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000005.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Banana___healthy",
+        "confidence": 15.63,
+        "margin": 0.42,
+        "entropy": 2.0636,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000009.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 16.35,
+        "margin": 1.58,
+        "entropy": 2.0653,
+        "consistency": 0.67,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000002.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.06,
+        "margin": 0.46,
+        "entropy": 2.0569,
+        "consistency": 0.5,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000000.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Banana___healthy",
+        "confidence": 14.28,
+        "margin": 0.08,
+        "entropy": 2.0706,
+        "consistency": 0.33,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000007.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Apple___Apple_scab",
+        "confidence": 15.34,
+        "margin": 0.16,
+        "entropy": 2.067,
+        "consistency": 0.5,
+        "is_correct": false
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000006.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 17.02,
+        "margin": 1.87,
+        "entropy": 2.0598,
+        "consistency": 1.0,
+        "is_correct": true
+    },
+    {
+        "path": "data/train\\Tomato___healthy\\scraped_000003.jpg",
+        "expected": "Tomato___healthy",
+        "predicted": "Tomato___healthy",
+        "confidence": 16.22,
+        "margin": 1.28,
+        "entropy": 2.0593,
+        "consistency": 0.5,
+        "is_correct": true
+    }
+]

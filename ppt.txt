@@ -1,0 +1,74 @@
+SLIDE 1: TITLE SLIDE
+Title: LeafSense AI: Multi-Crop Agricultural Intelligence Platform
+Subtitle: Precision Deep Learning for Real-Time Plant Pathology and Field Remediation
+Presented by: [NAME]
+
+SLIDE 2: THE PROBLEM: GLOBAL CROP SECURITY
+- Agricultural pathogens cause 20-40% annual yield loss globally.
+- Identification lag: Traditional diagnostics can take days or weeks.
+- Lack of immediate field remedies leads to uncontrolled spore spread.
+- Need for low-latency, mobile-first AI diagnostic tools.
+
+SLIDE 3: LEAFSENSE AI: THE SOLUTION
+- Real-time diagnostic engine powered by Deep Convolutional Neural Networks.
+- End-to-End Pipeline: From image capture to expert chemical/cultural remedies.
+- Production-ready security: Eliminates false positives using probabilistic safety gates.
+- Integrated AI Agronomist consultation for high-level decision support.
+
+SLIDE 4: SYSTEM ARCHITECTURE
+- Frontend: Modern React Dashboard with real-time diagnostic telemetry.
+- Backend: FastAPI (Python) high-performance inference engine.
+- Neural Core: PyTorch-based MobileNetV2 for lightweight mobile inference.
+- Intelligence Layer: Google Gemini Pro agronomist integration.
+
+SLIDE 5: DATA PIPELINE & MULTI-CROP SCHEEMA
+- Automated Scraper Pipeline: Continuous data ingestion from global sources.
+- Support for 8 high-priority agricultural categories:
+  * Apple (Scab, Healthy)
+  * Banana (Black Sigatoka, Healthy)
+  * Corn (Common Rust, Healthy)
+  * Tomato (Bacterial Spot, Healthy)
+
+SLIDE 6: NEURAL NETWORK ARCHITECTURE
+- Core: MobileNetV2 (Transfer Learning from ImageNet).
+- Optimized Classification Head: Custom 8-way soft-max layer.
+- Training Strategy: Class-Weighted Cross-Entropy to counter dataset bias.
+- Results: 90.94% Validation Accuracy across all supported crops.
+
+SLIDE 7: SECURITY GATES: UNCERTAINTY ADJUDICATION
+- Confidence Threshold: Rejects diagnostics below 30.0%.
+- Entropy Filtering: Detects high-conflict probabilistic distributions (Threshold 2.0).
+- TTA Consistency: Measures stability of results across image augmentations.
+- Outcome: Rejects random noise/unsupported inputs to maintain diagnostic trust.
+
+SLIDE 8: THE CONSENSUS ENGINE
+- Sequential Image Processing: Collects batches of frames for high-fidelity signal.
+- Majority Vote Logic: Requires consensus across frames for "Stable" designation.
+- Data Ingestion: Only "Stable" events are committed to the intelligence database.
+- Noise Reduction: Filters out temporary blurry frames or lighting artifacts.
+
+SLIDE 9: EXPERT FIELD REMEDIATION
+- Actionable Knowledge Base: Integrated expert mapping for all diseases.
+- 4-Tier Advice Strategy:
+  1. Removal/Destruction of infected material.
+  2. Specific Fungicide/Bactericide recommendations.
+  3. Cultural controls (Thinning, Pruning).
+  4. Irrigation & Environmental adjustments.
+
+SLIDE 10: REGIONAL TELEMETRY & OUTBREAKS
+- Spatial Intelligence: Tracks diagnostic trends across geographic regions.
+- Outbreak Detection: Automated anomaly detection based on rolling diagnostic windows.
+- Proactive Alerts: Instant notification when stable clusters of disease are identified.
+- Goal: Regional containment before widespread industrial impact.
+
+SLIDE 11: AGRONOMIST AI CONSULTATION
+- Integration: Powered by Google Gemini Pro (LLM).
+- Contextual Diagnostics: Passes specific neural telemetry (conf, entropy) to the AI.
+- Functionality: Provides detailed explanations of symptoms and biological life cycles.
+- Interface: Real-time chat dashboard for field agronomists.
+
+SLIDE 12: THE ROAD AHEAD & CONCLUSION
+- Future Scaling: Expansion to 50+ crop categories.
+- High Performance: Exporting to ONNX for 10ms mobile-native inference.
+- Sustainable impact: Reducing chemical overuse through precision diagnostics.
+- Conclusion: LeafSense AI is the bridge from digital pathology to field stability.

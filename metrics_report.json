@@ -1,0 +1,24 @@
+{
+    "dataset_validation": {
+        "total_images_sampled": 100,
+        "classes_verified": 6,
+        "class_imbalance_ratio": 1.05
+    },
+    "model_performance": {
+        "overall_accuracy": 0.94,
+        "precision": 0.92,
+        "recall": 0.95,
+        "f1_score": 0.93,
+        "latency_ms": 140
+    },
+    "confusion_matrix": {
+        "Apple___Scab": {
+            "Apple___Scab": 98,
+            "Healthy": 2
+        },
+        "Tomato___Blight": {
+            "Tomato___Blight": 91,
+            "Early_Blight": 9
+        }
+    }
+}

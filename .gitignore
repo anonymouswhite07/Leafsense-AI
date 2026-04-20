@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# Project Specific
+backend/intelligence.db
+backend/feedback.db
+backend/reports/
+data/raw/
+data/train/
+data/val/
+*.pt
+test_urls.txt
+test_scraper_logic.py
+debug_out.txt
