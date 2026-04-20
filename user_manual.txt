@@ -96,7 +96,17 @@ DIAGNOSIS FLOW:
 - ADVICE: Neural diagnostics are support tools; always consult with a local agricultural extension officer for critical chemical applications.
 
 --------------------------------------------------------------------------------
-MAINTENANCE & LOGS
+9. VERCEL DEPLOYMENT (OPTIONAL)
+--------------------------------------------------------------------------------
+The project includes a `vercel.json` for unified deployment.
+1. Install Vercel CLI: `npm i -g vercel`.
+2. Run `vercel` in the project root.
+3. IMPORTANT: Vercel serverless functions have a 250MB limit. Standard PyTorch (`torch`) is ~800MB.
+   - For Vercel, it is recommended to convert the model to ONNX.
+   - Alternatively, host the Backend on Render.com or Railway.app (using a Dockerfile) and the Frontend on Vercel.
+
+--------------------------------------------------------------------------------
+10. MAINTENANCE & LOGS
 --------------------------------------------------------------------------------
 - Inference logs are saved to `backend/main.py` console output.
 - Diagnostic history is stored in `backend/intelligence.db` (SQLite).
