@@ -10,3 +10,4 @@ google-generativeai
 reportlab
 matplotlib
 opencv-python-headless
+python-dotenv
