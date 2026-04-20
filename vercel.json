@@ -10,8 +10,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "frontend/$1",
-      "check": true
+      "destination": "frontend/$1"
     },
     {
       "source": "/(.*)",
