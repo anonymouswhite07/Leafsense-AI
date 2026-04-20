@@ -25,12 +25,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("main")
 
 import gc
-from starlette.middleware.base import BaseMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 
 app = FastAPI(title="LeafSense AI API")
 
 # Global Error + CORS Handler (Ensures CORS headers even on crashes)
-class CORSRecoveryMiddleware(BaseMiddleware):
+class CORSRecoveryMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         try:
             response = await call_next(request)
