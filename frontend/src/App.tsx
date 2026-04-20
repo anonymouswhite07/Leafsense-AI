@@ -138,6 +138,8 @@ const AVAILABLE_LABELS = [
   "Tomato___Bacterial_spot", "Tomato___healthy"
 ];
 
+const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? "http://127.0.0.1:8000" : "/_/backend";
+
 function App() {
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
@@ -176,7 +178,7 @@ function App() {
     const savedHistory = localStorage.getItem('leafSenseHistory');
     if (savedHistory) setHistory(JSON.parse(savedHistory));
     
-    fetch("http://127.0.0.1:8000/model-info")
+    fetch(`${API_BASE}/model-info`)
       .then(res => res.json())
       .then(data => setModelInfo(data))
       .catch(console.error);
@@ -195,7 +197,7 @@ function App() {
 
   useEffect(() => {
     if (isDashboard) {
-      fetch("http://127.0.0.1:8000/analytics")
+      fetch(`${API_BASE}/analytics`)
         .then(res => res.json())
         .then(data => {
             setAnalytics(data);
@@ -271,7 +273,7 @@ function App() {
     if(coords) { formData.append("lat", coords.lat.toString()); formData.append("lng", coords.lng.toString()); }
     
     try {
-      const response = await fetch("http://127.0.0.1:8000/predict", { method: "POST", body: formData });
+      const response = await fetch(`${API_BASE}/predict`, { method: "POST", body: formData });
       if (!response.ok) throw new Error("Server error.");
       const data = await response.json();
       if (data.error) throw new Error(data.error);
@@ -305,7 +307,7 @@ function App() {
         formData.append("predicted", prediction.final_prediction);
         formData.append("actual", isCorrect ? prediction.final_prediction : selectedCorrectLabel);
         formData.append("confidence", prediction.confidence.toString());
-        await fetch("http://127.0.0.1:8000/feedback", { method: "POST", body: formData });
+        await fetch(`${API_BASE}/feedback`, { method: "POST", body: formData });
         setFeedbackState('submitted');
     } catch(e) { console.error(e); }
   };
@@ -319,7 +321,7 @@ function App() {
       formData.append("disease", prediction.final_prediction);
       formData.append("confidence", prediction.confidence.toString());
       formData.append("solution", prediction.solution);
-      const response = await fetch("http://127.0.0.1:8000/report", { method: "POST", body: formData });
+      const response = await fetch(`${API_BASE}/report`, { method: "POST", body: formData });
       if (!response.ok) throw new Error("Failed to generate report.");
       const blob = await response.blob();
       const downloadUrl = window.URL.createObjectURL(blob);
@@ -335,7 +337,7 @@ function App() {
   
   const handleExportData = async () => {
      try {
-         const response = await fetch("http://127.0.0.1:8000/export");
+         const response = await fetch(`${API_BASE}/export`);
          const data = await response.json();
          const blob = new Blob([JSON.stringify(data, null, 2)], {type : 'application/json'});
          const url = window.URL.createObjectURL(blob);
@@ -353,7 +355,7 @@ function App() {
     setChatMessages(prev => [...prev, { id: Date.now().toString(), sender: 'user', text: userMessage }]);
     setIsChatLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:8000/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: userMessage, disease: prediction.final_prediction, language: lang }) });
+      const response = await fetch(`${API_BASE}/chat`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: userMessage, disease: prediction.final_prediction, language: lang }) });
       if (!response.ok) throw new Error("Chat server unreachable.");
       const data = await response.json();
       setChatMessages(prev => [...prev, { id: Date.now().toString(), sender: 'bot', text: data.reply }]);
