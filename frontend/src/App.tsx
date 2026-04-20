@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { UploadCloud, Leaf, AlertCircle, CheckCircle, Loader2, Globe, Clock, X, Camera, Aperture, VideoOff, MessageSquare, Send, Bot, User, FileText, Zap, ThumbsUp, ThumbsDown, Info, LayoutDashboard, MapPin, AlertTriangle, Download } from 'lucide-react';
+import { UploadCloud, Leaf, AlertCircle, CheckCircle, Loader2, Globe, Clock, X, Camera, Aperture, MessageSquare, Send, Bot, FileText, Zap, ThumbsUp, ThumbsDown, Info, LayoutDashboard, MapPin, AlertTriangle, Download } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 interface TTAImageResult {
@@ -150,7 +150,7 @@ function App() {
   const [lang, setLang] = useState<'en' | 'ta'>('en');
   const [showHistory, setShowHistory] = useState(false);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
-  const [cameraError, setCameraError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [modelInfo, setModelInfo] = useState<ModelInfo | null>(null);
   
@@ -235,7 +235,7 @@ function App() {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
       if (videoRef.current) videoRef.current.srcObject = stream;
     } catch (err) {
-      setCameraError(t.cameraError); setIsCameraOpen(false);
+      console.error(t.cameraError); setIsCameraOpen(false);
     }
   };
 
@@ -466,7 +466,7 @@ function App() {
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
                                 <Pie data={analytics.distribution} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value">
-                                    {analytics.distribution.map((entry, index) => (
+                                    {analytics.distribution.map((_entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
